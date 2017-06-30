@@ -45,13 +45,13 @@ public class ApiController extends AbstractController {
 	 * @param contentFormat
 	 * @return
 	 */
-	@RequestMapping(value="/raw/{labelsPath:.+}.json")
+	@RequestMapping(value="/raw/{labelsPath:.+}.{contentFormat}")
     public Object rawApi(final HttpServletRequest request,
     				  final HttpServletResponse response,
     				  @PathVariable("labelsPath") String labelsPath,
     				  @PathVariable("contentFormat") ContentFormat contentFormat) {
 
-		setContentType(ContentFormat.json, response);
+		setContentType(contentFormat, response);
         return getRawResult(buildCypherQuery(labelsPath, request), labelsPath, contentFormat, request);
 
 	}
